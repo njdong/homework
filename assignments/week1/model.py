@@ -28,7 +28,7 @@ class LinearRegression:
 
 class GradientDescentLinearRegression(LinearRegression):
     """
-    A linear regression model that uses gradient descent to fit the model. 
+    A linear regression model that uses gradient descent to fit the model.
     """
 
     def fit(self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 1000 ) -> None:
