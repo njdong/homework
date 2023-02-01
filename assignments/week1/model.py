@@ -2,6 +2,10 @@ import numpy as np
 
 
 class LinearRegression:
+    """
+    A linear regression model that uses analytical solutions.
+    """
+
     w: np.ndarray
     b: float
 
@@ -12,20 +16,20 @@ class LinearRegression:
         self.w = 0
         self.b = 0
 
-    def fit(self, X, y) -> np.ndarray:
+    def fit(self, X: np.ndarray, y: np.ndarray) -> np.ndarray:
         """
         lin algebra fit
         """
         if np.linalg.det(X.T @ X) != 0:
             param = np.linalg.inv(X.T @ X) @ X.T @ y
-            self.w = param[0]
-            self.b = param[1]
+            self.w = param
+            # self.b = param[1]
         else:
             print("LinAlgError. Matrix is Singular. No analytical solution.")
 
         return param
 
-    def predict(self, X) -> np.ndarray:
+    def predict(self, X: np.ndarray) -> np.ndarray:
         """
         predict with matrix multiplication
         """
@@ -41,6 +45,10 @@ class GradientDescentLinearRegression(LinearRegression):
     def fit(
         self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 1000
     ) -> None:
+        """
+        update fit for the number of epochs
+        """
+
         m = len(y)
 
         for i in range(epochs):
