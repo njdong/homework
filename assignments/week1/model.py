@@ -30,9 +30,11 @@ class GradientDescentLinearRegression(LinearRegression):
         self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 1000
     ) -> None:
         m = len(y)
-        y_pred = self.predict()
-        self.w += lr * ((1 / m) * np.sum(y_pred - y))
-        self.b -= lr * ((1 / m) * np.sum(y_pred - y) * self.X)
+
+        for x in range(epochs):
+            y_pred = self.predict()
+            self.w += lr * ((1 / m) * np.sum(y_pred - y))
+            self.b -= lr * ((1 / m) * np.sum(y_pred - y) * self.X)
 
     def predict(self, X: np.ndarray) -> np.ndarray:
         """
