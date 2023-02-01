@@ -6,12 +6,16 @@ class LinearRegression:
     b: float
 
     def __init__(self):
-        """attributes w and b initialized to 0"""
+        """
+        attributes w and b initialized to 0
+        """
         self.w = 0
         self.b = 0
 
-    def fit(self, X, y) -> None:
-        """lin algebra fit"""
+    def fit(self, X, y) -> np.ndarray:
+        """
+        lin algebra fit
+        """
         if np.linalg.det(X.T @ X) != 0:
             param = np.linalg.inv(X.T @ X) @ X.T @ y
             self.w = param[0]
@@ -19,8 +23,12 @@ class LinearRegression:
         else:
             print("LinAlgError. Matrix is Singular. No analytical solution.")
 
+        return param
+
     def predict(self, X) -> np.ndarray:
-        """predict with matrix multiplication"""
+        """
+        predict with matrix multiplication
+        """
         y_pred = self.w * X + self.b
         return y_pred
 
