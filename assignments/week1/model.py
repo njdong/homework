@@ -48,6 +48,6 @@ class GradientDescentLinearRegression(LinearRegression):
 
         """
 
-        y_pred = self.w * x + self.b
+        y_pred = self.w * X + self.b
 
         return y_pred
