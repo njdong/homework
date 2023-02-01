@@ -14,6 +14,7 @@ class LinearRegression:
             self.w, self.b = np.linalg.inv(X.T @ X) @ X.T @ y
         else:
             print("LinAlgError. Matrix is Singular. No analytical solution.")
+
         return self.w, self.b
 
     def predict(self, X):
@@ -33,7 +34,7 @@ class GradientDescentLinearRegression(LinearRegression):
 
         for x in range(epochs):
             y_pred = self.predict()
-            self.w += lr * ((1 / m) * np.sum(y_pred - y))
+            self.w -= lr * ((1 / m) * np.sum(y_pred - y))
             self.b -= lr * ((1 / m) * np.sum(y_pred - y) * self.X)
 
     def predict(self, X: np.ndarray) -> np.ndarray:
