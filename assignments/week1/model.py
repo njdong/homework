@@ -6,18 +6,21 @@ class LinearRegression:
     b: float
 
     def __init__(self):
+        """attributes w and b initialized to 0"""
         self.w = 0
         self.b = 0
 
-    def fit(self, X, y):
+    def fit(self, X, y) -> None:
+        """lin algebra fit"""
         if np.linalg.det(X.T @ X) != 0:
-            self.w, self.b = np.linalg.inv(X.T @ X) @ X.T @ y
+            param = np.linalg.inv(X.T @ X) @ X.T @ y
+            self.w = param[0]
+            self.b = param[1]
         else:
             print("LinAlgError. Matrix is Singular. No analytical solution.")
 
-        return self.w, self.b
-
-    def predict(self, X):
+    def predict(self, X) -> np.ndarray:
+        """predict with matrix multiplication"""
         y_pred = self.w * X + self.b
         return y_pred
 
@@ -35,7 +38,7 @@ class GradientDescentLinearRegression(LinearRegression):
         for i in range(epochs):
             y_pred = self.predict(X)
             self.w -= lr * ((1 / m) * np.sum(y_pred - y))
-            self.b -= lr * ((1 / m) * np.sum(y_pred - y) * self.X)
+            self.b -= lr * ((1 / m) * np.sum(y_pred - y) * X)
 
     def predict(self, X: np.ndarray) -> np.ndarray:
         """
