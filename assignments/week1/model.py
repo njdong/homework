@@ -2,7 +2,6 @@ import numpy as np
 
 
 class LinearRegression:
-
     w: np.ndarray
     b: float
 
@@ -30,7 +29,6 @@ class GradientDescentLinearRegression(LinearRegression):
     def fit(
         self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 1000
     ) -> None:
-
         m = len(y)
         y_pred = self.predict()
         self.w += lr * ((1 / m) * np.sum(y_pred - y))
