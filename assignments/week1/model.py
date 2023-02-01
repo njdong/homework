@@ -32,8 +32,8 @@ class GradientDescentLinearRegression(LinearRegression):
     ) -> None:
         m = len(y)
 
-        for x in range(epochs):
-            y_pred = self.predict()
+        for i in range(epochs):
+            y_pred = self.predict(X)
             self.w -= lr * ((1 / m) * np.sum(y_pred - y))
             self.b -= lr * ((1 / m) * np.sum(y_pred - y) * self.X)
 
