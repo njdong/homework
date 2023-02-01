@@ -46,9 +46,6 @@ class GradientDescentLinearRegression(LinearRegression):
 
         """
 
-        y_pred = np.array([])
-
-        for x in X:
-            y_pred = np.append(y_pred, self.w * x + self.b)
+        y_pred = np.append(y_pred, self.w * x + self.b)
 
         return y_pred
