@@ -9,21 +9,17 @@ class LinearRegression:
     def __init__(self):
         self.w = 0
         self.b = 0
-      
 
     def fit(self, X, y):
         if np.linalg.det(X.T @ X) != 0:
-            self.w, self.b = np.linalg.inv(X.T @ X)@X.T@y
+            self.w, self.b = np.linalg.inv(X.T @ X) @ X.T @ y
         else:
             print("LinAlgError. Matrix is Singular. No analytical solution.")
         return self.w, self.b
 
-        
-
     def predict(self, X):
         y_pred = self.w * X + self.b
         return y_pred
-
 
 
 class GradientDescentLinearRegression(LinearRegression):
@@ -31,14 +27,14 @@ class GradientDescentLinearRegression(LinearRegression):
     A linear regression model that uses gradient descent to fit the model.
     """
 
-    def fit(self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 1000 ) -> None:
-        
-   
+    def fit(
+        self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 1000
+    ) -> None:
+
         m = len(y)
         y_pred = self.predict()
-        self.w += lr * ((1/m) * np.sum(y_pred - y))
-        self.b -= lr * ((1/m) * np.sum(y_pred - y) * self.X)
-
+        self.w += lr * ((1 / m) * np.sum(y_pred - y))
+        self.b -= lr * ((1 / m) * np.sum(y_pred - y) * self.X)
 
     def predict(self, X: np.ndarray) -> np.ndarray:
         """
@@ -51,10 +47,10 @@ class GradientDescentLinearRegression(LinearRegression):
             np.ndarray: The predicted output.
 
         """
-        
+
         y_pred = np.array([])
 
         for x in X:
-            y_pred = np.append(y_pred, self.w*x + self.b)
-        
+            y_pred = np.append(y_pred, self.w * x + self.b)
+
         return y_pred
