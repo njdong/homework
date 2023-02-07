@@ -4,6 +4,10 @@ from typing import Callable
 
 
 class MLP(nn.Module):
+    """
+    mlp from modellist
+    """
+
     def __init__(
         self,
         input_size: int,
@@ -39,7 +43,7 @@ class MLP(nn.Module):
         for layer in self.layers:
             initializer(layer.weight)
 
-    def forward(self, x):
+    def forward(self, x: torch.tensor) -> torch.tensor:
         """
         Forward pass of the network.
 
