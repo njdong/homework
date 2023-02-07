@@ -47,7 +47,7 @@ class MLP(nn.Module):
             x: The input data.
 
         Returns:
-            The output of the network.
+            The output of the network.v
         """
         for layer in self.layers[:-1]:
             x = self.activation()(layer(x))
