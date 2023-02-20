@@ -7,14 +7,14 @@ from torchvision.transforms import Compose, Normalize, ToTensor
 
 class CONFIG:
     batch_size = 64
-    num_epochs = 2
-    initial_learning_rate = 0.001
+    num_epochs = 5
+    initial_learning_rate = 0.002
     initial_weight_decay = 0
 
     lrs_kwargs = {
         # adding parameters
-        "step_size": 1,
-        "gamma": 0.005,
+        "step_size": 5,
+        "gamma": 0.001,
     }
 
     optimizer_factory: Callable[
