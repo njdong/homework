@@ -18,7 +18,6 @@ class CustomLRScheduler(_LRScheduler):
         super(CustomLRScheduler, self).__init__(optimizer, last_epoch)
 
         self.optimizer = optimizer
-
         self.step_size = step_size
         self.gamma = gamma
         self.last_epoch = last_epoch
