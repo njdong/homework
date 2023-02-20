@@ -15,28 +15,28 @@ class CustomLRScheduler(_LRScheduler):
 
         """
         # ... Your Code Here ...
+        
         super(CustomLRScheduler, self).__init__(optimizer, last_epoch)
-
         self.optimizer = optimizer
         self.step_size = step_size
         self.gamma = gamma
         self.last_epoch = last_epoch
+      
 
     def get_lr(self):
         """
-        getting learning rate
+        getting learning rate; assuming learning rate decreases exponentially
         """
 
         if self.last_epoch == 0:
             return [lr for lr in self.base_lrs]
-
-        decay = np.exp((-1) * self.gamma)
+        
+     
+        decay = np.exp((-1) * self.gamma*self.last_epoch)
 
         return [lr * decay for lr in self.base_lrs]
 
-    # def get_lr(self) -> List[float]:
-    # Note to students: You CANNOT change the arguments or return type of
-    # this function (because it is called internally by Torch)
+ 
 
     # ... Your Code Here ...
     # Here's our dumb baseline implementation:
