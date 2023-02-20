@@ -12,6 +12,7 @@ class CONFIG:
     initial_weight_decay = 0
 
     lrs_kwargs = {
+        # adding parameters
         "step_size": 1,
         "gamma": 0.005,
     }
