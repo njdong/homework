@@ -6,6 +6,11 @@ import numpy as np
 
 
 class CustomLRScheduler(_LRScheduler):
+    """
+    creating a LR scheduler which the learning rate increases linearly on the first 3 epochs.
+    Then, the learning rate decrease exponentially with a factor of gamma
+    """
+
     def __init__(self, optimizer, step_size=2, gamma=0.005, last_epoch=-1):
         """
         Create a new scheduler.
@@ -22,7 +27,7 @@ class CustomLRScheduler(_LRScheduler):
         self.gamma = gamma
         self.last_epoch = last_epoch
 
-    def get_lr(self):
+    def get_lr(self) -> List[float]:
         """
         getting learning rate;
         assuming learning rate linearly increase for the first 3 epochs and then
