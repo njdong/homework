@@ -7,6 +7,6 @@
         }
     ],
     "sources": [
-        "documentation: https://pytorch.org/docs/stable/_modules/torch/optim/lr_scheduler.html"
+        "using lr_scheduler documentation as template: https://pytorch.org/docs/stable/_modules/torch/optim/lr_scheduler.html"
     ]
 }
