@@ -10,11 +10,11 @@ class CONFIG:
     larger batch_size to enable faster network
     """
 
-    batch_size = 100
+    batch_size = 200
     num_epochs = 5
 
     optimizer_factory: Callable[
         [nn.Module], torch.optim.Optimizer
-    ] = lambda model: torch.optim.Adam(model.parameters(), lr=1e-3)
+    ] = lambda model: torch.optim.Adam(model.parameters(), lr=5e-3)
 
     transforms = Compose([ToTensor()])
