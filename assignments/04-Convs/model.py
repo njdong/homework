@@ -8,7 +8,7 @@ class Model(torch.nn.Module):
     CNN
     """
 
-    def __init__(self, num_channels, num_classes) -> None:
+    def __init__(self, num_channels: int, num_classes: int) -> None:
         """
         CNN
         """
@@ -20,7 +20,7 @@ class Model(torch.nn.Module):
         self.bn2 = nn.BatchNorm2d(16)
         self.fc1 = nn.Linear(16 * 8 * 8, num_classes)
 
-    def forward(self, x) -> None:
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
         CNN
         """
