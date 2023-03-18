@@ -5,31 +5,29 @@ import torch.nn.functional as F
 
 class Model(torch.nn.Module):
     """
-    CNN (LeNet)
+    CNN
     """
 
-    def __init__(self, num_channels: int, num_classes: int) -> None:
+    def __init__(self, num_channels, num_classes):
         """
-        CNN (LeNet)
+        CNN
         """
+        super().__init__()
 
-        self.conv1 = nn.Conv2d(num_channels, 32, kernel_size=3, padding=1)
-        self.bn1 = nn.BatchNorm2d(32)
-        self.conv2 = nn.Conv2d(32, 64, kernel_size=3, padding=1)
-        self.bn2 = nn.BatchNorm2d(64)
-        self.fc1 = nn.Linear(64 * 8 * 8, 128)
-        self.bn3 = nn.BatchNorm1d(128)
-        self.fc2 = nn.Linear(128, num_classes)
+        self.conv1 = nn.Conv2d(num_channels, 8, kernel_size=3, padding=1)
+        self.bn1 = nn.BatchNorm2d(8)
+        self.conv2 = nn.Conv2d(8, 16, kernel_size=3, padding=1)
+        self.bn2 = nn.BatchNorm2d(16)
+        self.fc1 = nn.Linear(16 * 8 * 8, num_classes)
 
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
+    def forward(self, x):
         """
-        CNN (conv1 -> batchnorm1 -> relu -> maxpoll)*2
+        CNN
         """
         x = F.relu(self.bn1(self.conv1(x)))
         x = F.max_pool2d(x, 2)
         x = F.relu(self.bn2(self.conv2(x)))
         x = F.max_pool2d(x, 2)
-        x = x.view(-1, 64 * 8 * 8)
-        x = F.relu(self.bn3(self.fc1(x)))
-        x = self.fc2(x)
+        x = x.view(-1, 16 * 8 * 8)
+        x = self.fc1(x)
         return x
